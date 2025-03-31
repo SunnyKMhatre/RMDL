@@ -72,8 +72,8 @@ class _QuizScreenState extends State<QuizScreen> {
                     (option) => Padding(
                       padding: const EdgeInsets.symmetric(vertical: 5.0),
                       child: ElevatedButton(
-                        onPressed: () => checkAnswer(option!, controller.responce![currentQuestionIndex].answer!),
-                        child: Text(option),
+                        onPressed: () => checkAnswer(option, controller.responce![currentQuestionIndex].answer!),
+                        child: Text(option!),
                       ),
                     ),
                   ).toList(),
