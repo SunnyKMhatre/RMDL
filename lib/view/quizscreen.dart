@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:provider/provider.dart';
 import 'package:rmdl/controller/quecontroller.dart';
 
-
 class QuizScreen extends StatefulWidget {
   @override
   _QuizScreenState createState() => _QuizScreenState();
@@ -12,34 +11,44 @@ class _QuizScreenState extends State<QuizScreen> {
   int currentQuestionIndex = 0;
   int correctAnswers = 0;
 
-  void checkAnswer(String selectedAnswer, String correctAnswer) {
-    if (selectedAnswer == correctAnswer) {
-      correctAnswers++;
-    }
+  void checkAnswer(String? selectedAnswer, String? correctAnswer) {
+    final controller = context.read<NewsController>();
+
     setState(() {
-      final controller = context.read<NewsController>();
+      // Check if the selected answer is correct
+      if (selectedAnswer != null &&
+          correctAnswer != null &&
+          selectedAnswer == correctAnswer) {
+        correctAnswers++;
+      }
+
+      // Move to the next question
       if (currentQuestionIndex < controller.responce!.length - 1) {
         currentQuestionIndex++;
       } else {
-        showDialog(
-          context: context,
-          builder: (context) => AlertDialog(
-            title: Text("Quiz Completed"),
-            content: Text("You got $correctAnswers correct answers!"),
-            actions: [
-              TextButton(
-                onPressed: () {
-                  Navigator.of(context).pop();
-                  setState(() {
-                    currentQuestionIndex = 0;
-                    correctAnswers = 0;
-                  });
-                },
-                child: Text("Restart"),
-              ),
-            ],
-          ),
-        );
+        // Wait for UI update before showing the dialog
+        Future.delayed(Duration(milliseconds: 300), () {
+          showDialog(
+            context: context,
+            barrierDismissible: false,
+            builder: (context) => AlertDialog(
+              title: Text("Quiz Completed"),
+              content: Text("You got $correctAnswers correct answers!"),
+              actions: [
+                TextButton(
+                  onPressed: () {
+                    Navigator.of(context).pop();
+                    setState(() {
+                      currentQuestionIndex = 0;
+                      correctAnswers = 0;
+                    });
+                  },
+                  child: Text("Restart"),
+                ),
+              ],
+            ),
+          );
+        });
       }
     });
   }
@@ -57,10 +66,12 @@ class _QuizScreenState extends State<QuizScreen> {
               child: Column(
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
-                  Text("Question ${currentQuestionIndex + 1}:", 
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text("Question ${currentQuestionIndex + 1}:",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                   SizedBox(height: 10),
-                  Text(controller.responce![currentQuestionIndex].question ?? "", 
+                  Text(
+                      controller.responce![currentQuestionIndex].question ?? "",
                       style: TextStyle(fontSize: 16)),
                   SizedBox(height: 20),
                   ...[
@@ -68,18 +79,24 @@ class _QuizScreenState extends State<QuizScreen> {
                     controller.responce![currentQuestionIndex].option2,
                     controller.responce![currentQuestionIndex].option3,
                     controller.responce![currentQuestionIndex].option4
-                  ].map(
-                    (option) => Padding(
-                      padding: const EdgeInsets.symmetric(vertical: 5.0),
-                      child: ElevatedButton(
-                        onPressed: () => checkAnswer(option, controller.responce![currentQuestionIndex].answer!),
-                        child: Text(option!),
-                      ),
-                    ),
-                  ).toList(),
+                  ]
+                      .map(
+                        (option) => Padding(
+                          padding: const EdgeInsets.symmetric(vertical: 5.0),
+                          child: ElevatedButton(
+                            onPressed: () => checkAnswer(
+                                option,
+                                controller
+                                    .responce![currentQuestionIndex].answer),
+                            child: Text(option ?? ""),
+                          ),
+                        ),
+                      )
+                      .toList(),
                   Spacer(),
-                  Text("Score: $correctAnswers", 
-                      style: TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
+                  Text("Score: $correctAnswers",
+                      style:
+                          TextStyle(fontSize: 18, fontWeight: FontWeight.bold)),
                 ],
               ),
             ),
