@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:rmdl/view/questions.dart';
+import 'package:rmdl/view/dashboard.dart';
 
 class Termsofuse extends StatelessWidget {
   const Termsofuse({super.key});
@@ -31,7 +31,7 @@ class Termsofuse extends StatelessWidget {
                 ),
                 Text(
                   "User-Generated content policy (UGC) by pressing the accept button:",
-                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                  style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                 ),
                 SizedBox(
                   height: 20,
@@ -40,55 +40,55 @@ class Termsofuse extends StatelessWidget {
                   leading: Icon(
                     Icons.person,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "I declare I have read and accepted the following condition of use.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.lock,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "If we find the app is being used outside its terms of use, we may restrict access to it.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.settings,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Any type of modification to the app or its components is not allowed.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.privacy_tip,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Privacy Policy may be updated from time to time for any reason. We will notify you of any changes to our Privacy Policy by posting the new Privacy Policy here.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                 ),
                 ListTile(
                   leading: Icon(
                     Icons.block_flipped,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "We do not share any kind of your Personal Data with third parties.",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 12),
                   ),
                 ),
                 SizedBox(
@@ -97,7 +97,9 @@ class Termsofuse extends StatelessWidget {
                 RichText(
                     text: TextSpan(
                         style: TextStyle(
-                            fontWeight: FontWeight.bold, fontSize: 15),
+                            fontWeight: FontWeight.bold,
+                            fontSize: 13,
+                            color: Colors.black),
                         children: [
                       TextSpan(
                         text:
@@ -122,10 +124,8 @@ class Termsofuse extends StatelessWidget {
                 ),
                 ElevatedButton(
                   onPressed: () {
-                    Navigator.pushReplacement(
-                        context,
-                        MaterialPageRoute(
-                            builder: (context) => QuestionSlider()));
+                    Navigator.pushReplacement(context,
+                        MaterialPageRoute(builder: (context) => Dashboard()));
                   },
                   child: Text(
                     "Accept",

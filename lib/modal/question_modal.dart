@@ -1,4 +1,4 @@
-class Quemodal {
+class QuestionModal {
   String? id;
   String? catId;
   String? question;
@@ -8,7 +8,7 @@ class Quemodal {
   String? option4;
   String? answer;
 
-  Quemodal(
+  QuestionModal(
       {this.id,
       this.catId,
       this.question,
@@ -18,7 +18,7 @@ class Quemodal {
       this.option4,
       this.answer});
 
-  Quemodal.fromJson(Map<String, dynamic> json) {
+  QuestionModal.fromJson(Map<String, dynamic> json) {
     id = json["id"];
     catId = json["cat_id"];
     question = json["question"];
@@ -42,7 +42,7 @@ class Quemodal {
     return _data;
   }
 
-  static List<Quemodal> ofquemodal(List value) {
-    return value.map((e) => Quemodal.fromJson(e)).toList();
+  static List<QuestionModal> ofqueationmodal(List value) {
+    return value.map((e) => QuestionModal.fromJson(e)).toList();
   }
 }

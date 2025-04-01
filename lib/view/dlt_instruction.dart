@@ -1,11 +1,28 @@
 import 'package:flutter/material.dart';
-import 'package:rmdl/view/dlexam.dart';
+import 'package:provider/provider.dart';
+import 'package:rmdl/controller/question_controller/cdl_test_question_controller.dart';
+import 'package:rmdl/controller/question_controller/dl_test_question_controller.dart';
+import 'package:rmdl/controller/question_controller/mcl_test_question_controller.dart';
+import 'package:rmdl/controller/question_controller/ms_test_question_controller.dart';
+import 'package:rmdl/controller/question_controller/road_test_question_controller.dart';
+import 'package:rmdl/view/cdl_quiz.dart';
+import 'package:rmdl/view/dl_quiz.dart';
+import 'package:rmdl/view/mcl_quiz.dart';
+import 'package:rmdl/view/ms_quiz.dart';
+import 'package:rmdl/view/road_quiz.dart';
 
 class DltInstruction extends StatelessWidget {
-  const DltInstruction({super.key});
+  final int testIndex;
+  const DltInstruction({super.key, required this.testIndex});
 
   @override
   Widget build(BuildContext context) {
+    final dlcontroller = context.read<DlTestQuestionController>();
+    final roadcontroller = context.read<RoadTestQuestionController>();
+    final mclcontroller = context.read<MclTestQuestionController>();
+    final cdlcontroller = context.read<CdlTestQuestionController>();
+    final mscontroller = context.read<MsTestQuestionController>();
+
     return Scaffold(
         appBar: AppBar(
           title: Text(
@@ -59,8 +76,27 @@ class DltInstruction extends StatelessWidget {
             ),
             ElevatedButton(
               onPressed: () {
-                Navigator.push(
-                    context, MaterialPageRoute(builder: (context) => Dlexam()));
+                if (testIndex == 0) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => DlQuiz()));
+                      dlcontroller.questiondata();
+                } else if (testIndex == 1) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => RoadQuiz()));
+                      roadcontroller.questiondata();
+                } else if (testIndex == 2) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MclQuiz()));
+                      mclcontroller.questiondata();
+                } else if (testIndex == 3) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => CdlQuiz()));
+                      cdlcontroller.questiondata();
+                } else if (testIndex == 4) {
+                  Navigator.push(context,
+                      MaterialPageRoute(builder: (context) => MsQuiz()));
+                      mscontroller.questiondata();
+                }
               },
               child: Text(
                 "Start Exam",

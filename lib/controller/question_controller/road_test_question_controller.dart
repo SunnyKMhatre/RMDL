@@ -3,21 +3,18 @@ import 'dart:convert';
 import 'package:flutter/material.dart';
 
 import 'package:http/http.dart' as http;
-import 'package:rmdl/modal/dm_modals/quetion_modal.dart';
+import 'package:rmdl/modal/question_modal.dart';
 
-class NewsController extends ChangeNotifier {
-  List<Quemodal>? responce;
+class RoadTestQuestionController extends ChangeNotifier {
+  List<QuestionModal>? responce;
 
-  NewsController() {
-    newsdata();
-  }
-  void newsdata() async {
+  void questiondata() async {
     try {
       var api = await http.get(Uri.parse(
           "https://appy.trycatchtech.com/v3/rto_advanced/test_data?cat_id=2"));
 
       if (api.statusCode == 200) {
-        responce = Quemodal.ofquemodal(jsonDecode(api.body));
+        responce = QuestionModal.ofqueationmodal(jsonDecode(api.body));
         notifyListeners();
       } else {
         print("No API Fetch");

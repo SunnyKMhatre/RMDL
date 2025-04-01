@@ -36,68 +36,70 @@ class _HomeScreenState extends State<HomeScreen> {
                   height: 50,
                 ),
                 Image.asset("assets/icon.png"),
-                SizedBox(
-                  height: 50,
-                ),
                 ListTile(
                     leading: Text(
                   "About",
                   style: TextStyle(fontSize: 20, fontWeight: FontWeight.bold),
                 )),
                 ListTile(
+                  minVerticalPadding: 5,
                   leading: Icon(
                     Icons.language,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Language",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                   subtitle: Text("English"),
                 ),
                 ListTile(
+                  minVerticalPadding: 5,
                   leading: Icon(
                     Icons.policy_outlined,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Privacy Policy",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                 ),
                 ListTile(
+                  minVerticalPadding: 5,
                   leading: Icon(
                     Icons.send_rounded,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Share With Friends",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                 ),
                 ListTile(
+                  minVerticalPadding: 5,
                   leading: Icon(
                     Icons.description,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Term & Conditions",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                 ),
                 ListTile(
+                  minVerticalPadding: 5,
                   leading: Icon(
                     Icons.star_rounded,
                     color: Color(0XFF2b319e),
-                    size: 40,
+                    size: 20,
                   ),
                   title: Text(
                     "Rate Us",
-                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 25),
+                    style: TextStyle(fontWeight: FontWeight.bold, fontSize: 15),
                   ),
                 ),
               ],
@@ -106,6 +108,7 @@ class _HomeScreenState extends State<HomeScreen> {
           bottomNavigationBar: Container(
             color: const Color.fromARGB(232, 27, 35, 145),
             child: TabBar(
+                unselectedLabelColor: Colors.black,
                 indicatorColor: const Color.fromARGB(232, 27, 35, 145),
                 labelColor: Colors.white,
                 tabs: [

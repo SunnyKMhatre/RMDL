@@ -3,9 +3,9 @@ import 'package:rmdl/modal/testmodal.dart';
 import 'package:rmdl/view/dlt_instruction.dart';
 
 class Test extends StatelessWidget {
-   Test({super.key});
+  Test({super.key});
 
-   List<TestModal> test = [
+  List<TestModal> test = [
     TestModal(
         image: "assets/dl_test.png",
         name: "Driver's License Test",
@@ -36,7 +36,7 @@ class Test extends StatelessWidget {
         children: [
           for (int i = 0; i < test.length; i++) ...[
             Padding(
-              padding: const EdgeInsets.all(16.0),
+              padding: const EdgeInsets.all(4.0),
               child: Container(
                 decoration: BoxDecoration(
                   border: Border.all(
@@ -46,20 +46,17 @@ class Test extends StatelessWidget {
                   borderRadius: BorderRadius.circular(50.0),
                 ),
                 child: ListTile(
-                  contentPadding:
-                      EdgeInsets.symmetric(vertical: 10.0, horizontal: 20.0),
+                  // contentPadding:
+                  //     EdgeInsets.symmetric(vertical: 16.0, horizontal: 10.0),
                   onTap: () {
-                    if (i == 0) {
-                      Navigator.push(
-                          context,
-                          MaterialPageRoute(
-                              builder: (context) => DltInstruction()));
-                    }
+                    Navigator.push(
+                      context,
+                      MaterialPageRoute(
+                        builder: (context) => DltInstruction(testIndex: i),
+                      ),
+                    );
                   },
-                  leading: CircleAvatar(
-                    radius: 40,
-                    backgroundImage: AssetImage("${test[i].image}"),
-                  ),
+                  leading: Image.asset("${test[i].image}"),
                   title: Text(
                     "${test[i].name}",
                     style: TextStyle(
@@ -69,7 +66,11 @@ class Test extends StatelessWidget {
                     ),
                   ),
                   subtitle: Text("${test[i].subtitle}"),
-                  trailing: Image.asset("assets/group_arrow.png"),
+                  trailing: Image.asset(
+                    "assets/group_arrow.png",
+                    height: 30,
+                    width: 30,
+                  ),
                 ),
               ),
             ),
@@ -78,5 +79,4 @@ class Test extends StatelessWidget {
       ),
     ));
   }
-
 }
